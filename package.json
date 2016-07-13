@@ -37,6 +37,6 @@
     }            
   , "license": "MIT"
   , "scripts": {
-    "main": "node launcher.js"
+        "start": "node launcher.js"
   }
 }
