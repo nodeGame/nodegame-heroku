@@ -1,3 +1,3 @@
-The OpenShift `nodejs` cartridge documentation can be found at:
+# nodegame-heroku (beta)
 
-http://openshift.github.io/documentation/oo_cartridge_guide.html#nodejs
+nodeGame ready-to-run on the heroku cloud.

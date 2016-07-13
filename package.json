@@ -1,6 +1,6 @@
 {
-    "name": "nodegame-openshift"
-  , "description": "Prepares a nodeGame instance to run on the openshift cloud."
+    "name": "nodegame-heroku"
+  , "description": "Prepares a nodeGame instance to run on the heroku cloud."
   , "version": "0.0.4"
   , "homepage": "http://nodegame.org"
   , "author": "Stefano Balietti <futur.dorko@gmail.com>"
@@ -9,11 +9,10 @@
     ]
   , "repository": {
         "type": "git"
-      , "url": "https://github.com/nodeGame/nodegame-openshift.git"
+      , "url": "https://github.com/nodeGame/nodegame-heroku.git"
     }
   , "keywords": [
-        "Openshift",
-        "Node.js",
+        "Heroku",
         "nodeGame",
         "cloud"
     ]
