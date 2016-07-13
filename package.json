@@ -18,11 +18,13 @@
     "type": "git",
     "url": "https://github.com/openshift/origin-server"
   },
-
+  "dependencies": {
+    "nodegame-installer": "*"
+  },
   "engines": {
     "node": ">= 0.6.0",
     "npm": ">= 1.0.0"
   },
   "private": true,
-  "main": "nodegame/launcher"
+  "main": "node_modules/nodegame-installer/launcher"
 }
