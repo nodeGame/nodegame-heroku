@@ -27,4 +27,5 @@
   "main": "nodegame/launcher",
   "script": {
     "prepublish": "./install.latest.sh"
+  }
 }
