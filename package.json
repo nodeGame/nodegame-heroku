@@ -1,30 +1,37 @@
 {
-  "name": "OpenShift-Sample-App",
-  "version": "1.0.0",
-  "description": "OpenShift Sample Application",
-  "keywords": [
-    "OpenShift",
-    "Node.js",
-    "application",
-    "openshift"
-  ],
-  "author": {
-    "name": "OpenShift",
-    "email": "ramr@example.org",
-    "url": "http://www.openshift.com/"
-  },
-  "homepage": "http://www.openshift.com/",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/openshift/origin-server"
-  },
-  "dependencies": {
-    "nodegame-installer": "*"
-  },
-  "engines": {
-    "node": ">= 0.6.0",
-    "npm": ">= 1.0.0"
-  },
-  "private": true,
-  "main": "node_modules/nodegame-installer/launcher"
+    "name": "nodegame-openshift"
+  , "description": "Prepares a nodeGame instance to run on the openshift cloud."
+  , "version": "0.0.3"
+  , "homepage": "http://nodegame.org"
+  , "author": "Stefano Balietti <futur.dorko@gmail.com>"
+  , "contributors": [
+        { "name": "Stefano Balietti", "email": "futur.dorko@gmail.com" }
+    ]
+  , "repository": {
+        "type": "git"
+      , "url": "https://github.com/nodeGame/nodegame-installer.git"
+    }
+  , "engines": { "node": ">= 0.10.0" }
+  , "dependencies" : {
+         "commander": "*",
+         "nodegame-client": "*",
+         "nodegame-server": "*",
+         "nodegame-window": "*",
+         "nodegame-widgets": "*",
+         "nodegame-requirements": "*",
+         "nodegame-monitor": "*",
+         "JSUS": "*",
+         "NDDB": "*",
+         "shelf.js": "*",
+         "descil-mturk": "*",
+         "nodegame-db": "*",
+         "nodegame-mongodb": "*",
+         "nodegame-generator": "*",
+         "ultimatum-game": "*"
+    }            
+  , "license": "MIT"
+  , "scripts": {
+    "prepublish": "ln -s -f node_modules/ultimatum-game games/ultimatum",
+    "main": "node launcher.js"
+  }
 }
