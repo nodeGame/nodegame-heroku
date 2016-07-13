@@ -1,0 +1,23 @@
+extends iframe-layout
+
+block mainContent
+   div(id='container')
+        h1=instructionsOfTheUltimatumGame
+        div(id='instructions')
+            =thisGameIsPlayed
+            br
+            br
+            !=inEachRound
+            br
+            br
+            =theRespondent
+            br
+            br
+            =theGameIsRepeated
+            br
+            br
+            p(id='pp', class='important')
+                =important
+                br
+                =inSuchACase
+        =ifYouUnderstood

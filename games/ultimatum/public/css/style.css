@@ -1,0 +1,36 @@
+div#container {
+    max-width: 650px;
+    margin: 0 auto;
+}
+
+.important {
+    color: red;
+    font-weight: bold;
+}
+
+.question {
+    font-weight: bold;
+}
+
+div#quiz .choicetable {
+    margin: 0 auto;
+    padding: 10px;
+}
+
+table#quest td {
+    width: 550px;
+    text-align: left;
+    padding: 5px 10px;
+}
+
+div.choicetable span.choicetable-maintext {
+    font-weight: bold;
+    margin-bottom: 20px;
+    font-size:  18px;
+}
+
+div.choicetable textarea {
+    width: 550px;
+    text-align: left;
+    padding: 5px 10px;
+}
