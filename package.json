@@ -24,8 +24,5 @@
     "npm": ">= 1.0.0"
   },
   "private": true,
-  "main": "nodegame/launcher",
-  "script": {
-    "prepublish": "./install.latest.sh"
-  }
+  "main": "nodegame/launcher"
 }
