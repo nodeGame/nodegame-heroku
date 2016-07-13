@@ -1,0 +1,34 @@
+{
+  "name": "ultimatum-game",
+  "channelName": "ultimatum",
+  "description": "Plays an ultimatum game with nodegame",
+  "version": "2.0.0",
+  "author": {
+    "name": "Stefano Balietti",
+    "email": "sbalietti@ethz.ch",
+    "url": "http://www.nodegame.org"
+  },
+  "main": "./index.html",
+  "keywords": [
+    "nodegame",
+    "behavioral",
+    "ultimatum",
+    "game theory"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/nodegame/ultimatum.git"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "mocha": ">= 2.1.0",
+    "should": ">= 5.0.0"
+  },
+  "engines": {
+    "node": "*",
+    "nodegame": ">= 1.0.0"
+  },
+  "scripts": {
+    "test": "./node_modules/.bin/mocha ./test/test.*.js"
+  }
+}

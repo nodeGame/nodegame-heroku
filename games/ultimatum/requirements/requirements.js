@@ -1,0 +1,67 @@
+/**
+ * # Requirements functions
+ * Copyright(c) 2016 Stefano Balietti
+ * MIT Licensed
+ *
+ * Sets requiremetns for accessing the channel.
+ * ---
+ */
+module.exports = function(requirements, settings) {
+
+    var ngr = require('nodegame-requirements');
+
+    requirements.add(ngr.nodegameBasic);
+    requirements.add(ngr.loadFrameTest);
+
+    if (settings.cookieSupport) {
+        requirements.add(ngr.cookieSupport, settings.cookieSupport);
+    }
+
+    if ('object' !== typeof settings.speedTest) {
+        requirements.add(ngr.speedTest, settings.speedTest);
+    }
+
+    if ('undefined' !== typeof settings.excludeBrowsers) {
+        requirements.add(ngr.browserDetect, settings.excludeBrowsers);
+    }
+
+    if ('undefined' !== typeof settings.maxExecTime) {
+        requirements.setMaxExecutionTime(settings.maxExecTime);
+    }
+
+    // requirements.add(ngr.testFail);
+    // requirements.add(ngr.testSuccess);
+
+    requirements.onFailure(function() {
+        var str, args;
+        console.log('failed');
+        str = '%spanYou are NOT allowed to take the HIT. If you ' +
+            'have already taken it, you must return it.%span';
+        args = {
+            '%span': {
+                'class': 'requirements-fail'
+            }
+        };
+        W.sprintf(str, args, this.summaryResults);
+
+        // You can leave a feedback using the form below.
+        // window.feedback = node.widgets.append('Feedback', div);
+    });
+
+    requirements.onSuccess(function() {
+        var str, args;
+        str = '%spanYou are allowed to take the HIT.%span';
+        args = {
+            '%span': {
+                'class': 'requirements-success'
+            }
+        };
+        W.sprintf(str, args, this.summaryResults);
+    });
+
+    // Either success or failure.
+    // requirements.onComplete(function() {
+    // ...something.
+    // });
+
+};

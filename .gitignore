@@ -22,13 +22,6 @@ node_modules/
 node_modules_old
 
 descil.conf.js
-
-games/ultimatum
-games/artex
-games/MiniSvo
-games/car-sharing
-games_new/
-start/
 log/*.log
 
 manifest.yml
