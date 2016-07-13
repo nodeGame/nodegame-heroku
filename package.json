@@ -23,13 +23,8 @@
     "node": ">= 0.6.0",
     "npm": ">= 1.0.0"
   },
-
-  "dependencies": {
-    "express": "~3.4.4"
-  },
-  "devDependencies": {},
-  "bundleDependencies": [],
-
   "private": true,
-  "main": "nodegame/launcher"
+  "main": "nodegame/launcher",
+  "script": {
+    "prepublish": "./install.latest.sh"
 }
