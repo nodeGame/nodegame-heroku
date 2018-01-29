@@ -35,14 +35,8 @@
          "nodegame-db": "*",
          "nodegame-mongodb": "*",
          "nodegame-generator": "nodeGame/nodegame-generator#v4",
-         "nodegame-game-template": "nodeGame/nodegame-game-template#v4",
-         "ultimatum-game": "nodeGame/ultimatum#demo",
-         "stopgo": "nodeGame/stopgo#demo",
-         "meritocracy": "nodeGame/meritocracy#demo",
-         "imgscore": "nodeGame/imgscore#demo",
-         "dictator": "nodeGame/dictator#demo",
-         "car-sharing": "nodeGame/car-sharing#demo"
-    }            
+         "nodegame-game-template": "nodeGame/nodegame-game-template#v4"
+         }            
   , "license": "MIT"
   , "scripts": {
         "start": "node launcher.js"
