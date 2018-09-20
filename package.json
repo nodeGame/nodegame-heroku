@@ -1,7 +1,7 @@
 {
     "name": "nodegame-heroku"
   , "description": "Prepares a nodeGame instance to run on the heroku cloud."
-  , "version": "4.2.0"
+  , "version": "4.3.0"
   , "homepage": "http://nodegame.org"
   , "author": "Stefano Balietti <futur.dorko@gmail.com>"
   , "contributors": [
