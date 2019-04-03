@@ -30,7 +30,7 @@
          "JSUS": "*",
          "NDDB": "*",
          "shelf.js": "*",
-         "descil-mturk": "*",
+         "nodegame-mturk": "*",
          "nodegame-db": "*",
          "nodegame-mongodb": "*",
          "nodegame-generator": "*",
