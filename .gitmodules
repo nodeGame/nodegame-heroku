@@ -1,0 +1,3 @@
+[submodule "games/groupineq"]
+	path = games/groupineq
+	url = ssh://balistef@nodegame.org:/~/groupineq.git
