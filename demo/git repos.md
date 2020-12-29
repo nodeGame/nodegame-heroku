@@ -1,10 +1,10 @@
  git repos of all the games:
  
- - car-sharing
+ - car-sharing 
  - dictator
  - HawkDove
  - imgscore
  - meritocracy-game
- - prisonersgame
+ - prisonersgame [https://github.com/shakty/prisonersgame]
  - stopgo
  - ultimatum-game
