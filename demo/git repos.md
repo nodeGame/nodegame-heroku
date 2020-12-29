@@ -5,6 +5,6 @@
  - HawkDove
  - imgscore
  - meritocracy-game
- - prisonersgame [https://github.com/shakty/prisonersgame]
+ - [prisonersgame](https://github.com/shakty/prisonersgame)
  - stopgo
  - ultimatum-game
