@@ -1,5 +1,5 @@
  
- The git repos of all the games on [https://nodegamedemo.herokuapp.com](https://nodegamedemo.herokuapp.com/):
+ The git repos of all the games on [Demo](https://nodegamedemo.herokuapp.com/) page:
  
  - [car-sharing](https://github.com/nodeGame/car-sharing) 
  - [dictator](https://github.com/nodeGame/dictator)
