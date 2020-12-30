@@ -1,9 +1,11 @@
 # CHANGELOG
 
 ## 6.0.0
-- Added list of repos of games in demo/ folder
+- Updated launcher.
+- Added list of repos of games in demo/ folder.
+- Ready for nodeGame v6.
 
 ## 4.0.0
 - Updated launcher. 
 - Added this changelog.
-- Ready for nodegame v4.
+- Ready for nodeGame v4.
