@@ -1,6 +1,6 @@
 /**
  * # Launcher file for nodeGame Server
- * Copyright(c) 2011-2018 Stefano Balietti
+ * Copyright(c) 2011-2020 Stefano Balietti
  * MIT Licensed
  *
  * Load configuration options and start the server
@@ -38,7 +38,7 @@ var confFile;
 
 // Other local options.
 var confDir, logDir, gamesDir, debug, infoQuery, runTests;
-var nClients, clientType, killServer, auth, wait;
+var nClients, clientType, killServer, auth, wait, port;
 var codesDb;
 
 var cert, key;
@@ -64,8 +64,8 @@ confFile = null;
 confDir = './conf';
 logDir = './log';
 gamesDir = './games';
-debug = false;
-infoQuery = false;
+debug = undefined;
+infoQuery = undefined;
 
 nClients =  4;
 clientType = 'autoplay';
@@ -88,16 +88,23 @@ program
             'Sets the configuration directory')
     .option('-l, --logDir <logDir>',
             'Sets the log directory')
+    .option('-L, --logLevel <logDir>',
+            'Sets the log level. Values: error(default)|warn|info|silly')
     .option('-g, --gamesDir <gamesDir>',
             'Sets the games directory')
     .option('-d, --debug',
             'Enables the debug mode')
-    .option('-i, --infoQuery',
+    .option('-i, --infoQuery [false]',
             'Enables getting information via query-string ?q=')
     .option('-b, --build [components]',
             'Rebuilds the specified components', list)
     .option('-s, --ssl [path-to-ssl-dir]',
             'Starts the server with SSL encryption')
+    .option('-f, --default [channel]',
+            'Sets the default channel')
+    .option('-P, --port [port]',
+            'Sets the port of the server')
+
 
 
 // Connect phantoms.
@@ -109,14 +116,13 @@ program
     .option('-t, --clientType <t>',
             'Sets the client type of connecting phantoms (default: autoplay)')
     .option('-T, --runTests',
-            'Run tests after all phantoms have reached game over ' +
-            '(overwrites settings.js in test/ folder')
+            'Run tests after all phantoms are game-over ' +
+            '(overwrites settings.js in test/)')
     .option('-k, --killServer',
-            'Kill server after all phantoms have reached game over')
+            'Kill server after all phantoms are game-over')
     .option('-a --auth [option]',
-            'Phantoms pass through /auth/. Options: createNew|new|' +
-            'nextAvailable|next|code|id:code&pwd:password|file:path/to/file. ' +
-            'Default: "new".')
+            'Phantoms auth options. Values: new(default)|createNew|' +
+            'nextAvailable|next|code|id:code&pwd:password|file:path/to/file.')
     .option('-w --wait [milliseconds]',
             'Waits before connecting the next phantom. Default: 1000')
 
@@ -155,36 +161,41 @@ else {
 
             // Adds a new game directory (Default is nodegame-server/games).
             servernode.gamesDirs.push(gamesDir);
-            // Sets the debug mode, exceptions will be thrown.
-            servernode.debug = debug;
-            // Can get information from /?q=
-            servernode.enableInfoQuery = infoQuery;
+
+            // Sets the debug mode, exceptions will be thrown, if TRUE.
+            if ('undefined' !== typeof debug) {
+                servernode.debug = debug;
+            }
+            // Can get information from /?q=, if TRUE
+            if ('undefined' !== typeof infoQuery) {
+                servernode.enableInfoQuery = infoQuery;
+            }
             // Basepath (without trailing slash).
             // servernode.basepath = '/mybasepath';
 
             return true;
         },
-        http: function(http) {
-            // Special configuration for Express goes here.
-            return true;
-        },
-        sio: function(sio) {
-            // Special configuration for Socket.Io goes here here.
-            // Might not work in Socket.IO 1.x (check).
-
-            // sio.set('transports', ['xhr-polling']);
-            // sio.set('transports', ['jsonp-polling']);
-
-            // sio.set('transports', [
-            //   'websocket'
-            // , 'flashsocket'
-            // , 'htmlfile'
-            // , 'xhr-polling'
-            // , 'jsonp-polling'
-            // ]);
-
-            return true;
-        }
+        // http: function(http) {
+        //     // Special configuration for Express goes here.
+        //     return true;
+        // },
+        // sio: function(sio) {
+        //     // Special configuration for Socket.Io goes here here.
+        //     // Might not work in Socket.IO 1.x (check).
+        //
+        //     // sio.set('transports', ['xhr-polling']);
+        //     // sio.set('transports', ['jsonp-polling']);
+        //
+        //     // sio.set('transports', [
+        //     //   'websocket'
+        //     // , 'flashsocket'
+        //     // , 'htmlfile'
+        //     // , 'xhr-polling'
+        //     // , 'jsonp-polling'
+        //     // ]);
+        //
+        //     return true;
+        // }
     };
 
     // Validate other options.
@@ -207,7 +218,17 @@ else {
         gamesDir = program.gamesDir;
     }
     if (program.debug) debug = true;
-    if (program.infoQuery) infoQuery = true;
+
+    // Parse infoQuery.
+    if (program.infoQuery) {
+        if ('boolean' === typeof program.infoQuery) {
+            infoQuery = program.infoQuery;
+        }
+        else {
+            let i = program.infoQuery.toLowerCase();
+            infoQuery = i === 'f' || i === 'false' || i === '0' ? false : true;
+        }
+    }
 }
 
 // Validate general options.
@@ -244,6 +265,23 @@ else if ('string' === typeof program.ssl) {
 
     })(program.ssl);
     if (!options.ssl) return;
+}
+
+if (program['default']) {
+    options.defaultChannel = program['default'];
+}
+
+if (program.port) {
+    port = J.isInt(program.port, 0);
+    if (!port) {
+        return printErr('--port ' + program.port +
+                        ' is not a positive number.');
+    }
+    options.port = port;
+}
+
+if (program.logLevel) {
+    options.logLevel = program.logLevel;
 }
 
 if (program.nClients) {
@@ -362,10 +400,10 @@ if (program.build) {
                 cssOnly = true;
             }
         }
-        
+
         info = J.resolveModuleDir('nodegame-server', __dirname);
         info = require(path.resolve(info, 'bin', 'info.js'));
-        
+
         if (!cssOnly) {
             out = 'nodegame-full.js';
 
@@ -377,7 +415,7 @@ if (program.build) {
                 NDDB: 'NDDB',
                 css: 'css'
             };
-            
+
             // Starting build.
             i = -1, len = program.build.length;
             for ( ; ++i < len ; ) {
@@ -414,7 +452,7 @@ if (program.build) {
             console.log(info.serverDir.build + out + ' rebuilt.');
             console.log('');
         }
-        
+
         if (cssAlso || cssOnly) {
             info.build.css(info.serverDir.css, function(err) {
                 if (!err) {
@@ -506,7 +544,7 @@ function startServer() {
             };
         }
 
-        
+
         startPhantom = function(i) {
             var str, config;
             str = 'Connecting phantom #' + (i+1) + '/' + nClients;
@@ -541,7 +579,7 @@ function startServer() {
         phantoms = [], numFinished = 0;
         for (i = 0; i < nClients; ++i) {
             if (i > 0 && wait) {
-                (function(i) { 
+                (function(i) {
                     setTimeout(function() { startPhantom(i); }, wait * i);
                 })(i);
             }
