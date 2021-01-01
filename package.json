@@ -22,7 +22,7 @@
          "fs-extra": "*",
          "smoosh": "0.4.0",
          "nodegame-client": "*",
-         "nodegame-server": "*",
+         "nodegame-server": "git://github.com/nodegame/nodegame-server.git#nophantom",
          "nodegame-window": "*",
          "nodegame-widgets": "*",
          "nodegame-requirements": "*",
@@ -36,7 +36,7 @@
          "nodegame-generator": "*",
          "nodegame-game-template": "*",
          "ultimatum-game": "*"
-    }            
+    }
   , "license": "MIT"
   , "scripts": {
         "start": "node launcher.js"

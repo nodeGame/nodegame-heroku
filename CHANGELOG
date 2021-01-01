@@ -3,9 +3,10 @@
 ## 6.0.0
 - Updated launcher and conf/.
 - Added list of repos of games in demo/ folder.
+- Fetching #nophantom branch for nodegame-server.
 - Ready for nodeGame v6.
 
 ## 4.0.0
-- Updated launcher. 
+- Updated launcher.
 - Added this changelog.
 - Ready for nodeGame v4.
