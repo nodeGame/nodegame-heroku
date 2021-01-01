@@ -1,4 +1,4 @@
-# nodegame-heroku (beta)
+# nodegame-heroku
 
 nodeGame ready-to-run on the Heroku cloud.
 
