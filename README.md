@@ -7,7 +7,7 @@ Read instructions on the nodeGame [wiki](https://github.com/nodeGame/nodegame/wi
 
 ## Additional Games in Demo page.
 
-The git repos of all the games on then nodeGame's Heroku [Demo](https://nodegamedemo.herokuapp.com/) page:
+The git repos of all the games on the nodeGame's Heroku [Demo](https://nodegamedemo.herokuapp.com/) page:
 
  - [ultimatum-game](https://github.com/nodeGame/ultimatum-game) (default)
  - [car-sharing](https://github.com/nodeGame/car-sharing)
@@ -18,7 +18,7 @@ The git repos of all the games on then nodeGame's Heroku [Demo](https://nodegame
  - [prisonersgame](https://github.com/shakty/prisonersgame)
  - [stopgo](https://github.com/nodeGame/stopgo)
 
-See the [Demo Repository](https://nodeGame/nodegamedemo).
+See the [Demo page](https://nodeGame/nodegamedemo).
 
 ## No-Phantoms
 
